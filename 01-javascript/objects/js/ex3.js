@@ -16,8 +16,7 @@ var movie = {
 var movieInfo = function (movie) {
   // console.log(movie);
   // var info = movie.title + ' lasts for ' + movie.duration + '. Stars: ' + movie.stars.join(', ');
-  var info = [movie.title, 'lasts for', movie.duration + '.',
-              'Stars:', movie.stars.join(', ')].join(' ');
+  var info = [ movie.title, 'lasts for', movie.duration + '.', 'Stars:', movie.stars.join(', ') ].join(' ');
   console.log(info);
 };
 
