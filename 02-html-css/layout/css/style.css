@@ -1,0 +1,14 @@
+.container {
+  max-width: 960px;
+  margin: auto;
+}
+
+article {
+  display: inline-block;
+  width: 80%;
+}
+
+aside {
+  display: inline-block;
+  width: 19%;
+}
