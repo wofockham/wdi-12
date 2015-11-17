@@ -1,0 +1,12 @@
+.container {
+  max-width: 960px;
+  margin: 0 auto; /* Variadic */
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 100px; /* Vertical centering, set height same as container height */
+}

@@ -1,0 +1,35 @@
+body {
+  background-color: pink;
+}
+
+h1, h3, h5 {
+  text-align: center;
+}
+
+p {
+  color: #2196F3;
+  margin-left: 40px;
+}
+
+.vital {
+  font-size: 150%;
+  color: white;
+}
+
+.groucho {
+  text-shadow: 0 0 15px red;
+}
+
+#significant {
+  color: green;
+}
+
+.parent {
+  background-color: green;
+}
+
+.child {
+  background-color: blue;
+  color: white;
+}
+

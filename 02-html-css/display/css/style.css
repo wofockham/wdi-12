@@ -1,0 +1,21 @@
+.fruity {
+  border: 1px solid green;
+  /* display: inline; cannot set width or height */
+}
+
+.spicy {
+  border: 1px solid pink;
+  /* display: block; can set width and height */
+  width: 500px;
+  height: 100px;
+}
+
+.bill {
+  display: block;
+  margin: auto; /* Center */
+}
+
+.invisible {
+  visibility: hidden;
+}
+
