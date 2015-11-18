@@ -19,8 +19,10 @@ var catFactory = function (name, age, color, legCount) {
 };
 
 var lizzie = catFactory('Lizzie', null, 'unknown', 3);
-// lizzie.legCount = 3;
+lizzie.legCount = 3;
 lizzie.allergies = 'toothpaste';
+console.log(lizzie);
+
 var daemon = catFactory('Daemon', 1, 'black');
 var professorCuddles = catFactory('Professor Cuddles', 0, 'tortoiseshell');
 
