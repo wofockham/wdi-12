@@ -13,7 +13,15 @@ end
 
 # Prompt for and add two numbers together, returning the result.
 def add
-  puts prompt('First number: ').to_f + prompt('Second number: ').to_f
+  # puts prompt('First number: ').to_f + prompt('Second number: ').to_f
+  a = prompt('First number: ').to_f
+  b = prompt('Second number: ').to_f
+
+  result = a + b
+  
+  puts result
+  
+  result # Implicit return of the result in case you wanted to use it elsewhere.
 end
 
 # Get the user's initial choice.
