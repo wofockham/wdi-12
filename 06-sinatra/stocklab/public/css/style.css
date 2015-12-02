@@ -1,0 +1,14 @@
+body {
+  background-image: url(http://previews.123rf.com/images/loskutnikov/loskutnikov1011/loskutnikov101100284/8341054-heap-of-dollars-money-background-Stock-Photo-cash.jpg);
+  background-color: green;
+  color: green;
+  text-align: center;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 1em;
+  border-radius: 1em;
+}
