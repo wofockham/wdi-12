@@ -3,18 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title>Calculator</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   
-  <nav>
-    <a href="/">Home</a>
-  </nav>
+  <div class="container">
 
-  <%= yield %>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/calc/multiply/23/3">Multiply</a>
+    </nav>
 
-  <footer>
-    &copy; Copyright Coldhead 2015 -- Give me your $$
-  </footer>
+    <%= yield %>
+
+    <footer>
+      &copy; Copyright Coldhead 2015 -- Give me your $$
+    </footer>
+
+  </div>
 
 </body>
 </html>
