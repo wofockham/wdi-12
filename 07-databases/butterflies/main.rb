@@ -43,6 +43,12 @@ get '/butterflies/:id/edit' do
   erb :butterflies_edit
 end
 
+post '/butterflies/:id' do
+  query = "UPDATE butterflies SET name='#{ params[:name] }', family='#{ params[:family] }', image='#{ params[:image] }' WHERE id=#{ params[:id] }"
+  query_db query
+  redirect to("/butterflies/#{ params[:id] }")
+end
+
 def query_db(sql)
   db = SQLite3::Database.new 'butterflies.db'
   db.results_as_hash = true
