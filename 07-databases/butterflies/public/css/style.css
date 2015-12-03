@@ -1,0 +1,22 @@
+.container {
+  max-width: 960px;
+  margin: auto;
+}
+
+nav {
+  text-align: right;
+}
+
+input, label {
+  display: block;
+}
+
+label {
+  margin-top: 1em;
+}
+
+img.feature {
+  max-width: 100%;
+}
+
+
