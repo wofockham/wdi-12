@@ -31,9 +31,23 @@ get '/butterflies/:id' do
   erb :butterflies_show
 end
 
+get '/butterflies/:id/delete' do
+  query_db "DELETE FROM butterflies WHERE id=#{ params[:id] }"
+  redirect to('/butterflies')
+end
+
+get '/butterflies/:id/edit' do
+  butterflies = query_db "SELECT * FROM butterflies WHERE id=#{ params[:id] }"
+  @butterfly = butterflies.first # Strip off the array.
+
+  erb :butterflies_edit
+end
+
 def query_db(sql)
   db = SQLite3::Database.new 'butterflies.db'
   db.results_as_hash = true
+
+  puts sql
 
   result = db.execute sql
   result

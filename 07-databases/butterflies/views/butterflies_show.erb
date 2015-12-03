@@ -4,3 +4,8 @@
 <% unless @butterfly['image'].nil? %>
   <img src="<%= @butterfly['image'] %>">
 <% end %>
+
+<p>
+  <a href="/butterflies/<%= @butterfly['id'] %>/delete">Delete</a>
+  <a href="/butterflies/<%= @butterfly['id'] %>/edit">Edit</a>
+</p>
