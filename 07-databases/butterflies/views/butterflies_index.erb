@@ -3,9 +3,7 @@
 <ul>
   <% @butterflies.each do |bfly| %>
     <li>
-      <a href="/butterflies/<%= bfly['id'] %>">
-        <%= bfly['name'] %>
-      </a>
+      <a href="/butterflies/<%= bfly['id'] %>"><%= bfly['name'] %></a>
     </li>
   <% end %>
 </ul>
