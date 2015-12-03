@@ -1,4 +1,5 @@
 Jack, 57, male
-Gigi, 17, female
+Gigi, 17, male
 Riley, 25, male
 Craigsy, 63, male
+Jimi, 58, male
