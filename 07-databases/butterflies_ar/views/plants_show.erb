@@ -3,3 +3,8 @@
 <% unless @plant['image'].nil? %>
   <img src="<%= @plant['image'] %>" class="feature">
 <% end %>
+
+<p>
+  <a href="/plants/<%= @plant['id'] %>/delete">Delete</a>
+  <a href="/plants/<%= @plant['id'] %>/edit">Edit</a>
+</p>

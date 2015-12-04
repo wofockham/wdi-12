@@ -1,0 +1,9 @@
+<h2>Edit Plant</h2>
+<form action="/plants/<%= @plant['id'] %>" method="post">
+  <label for="">Name:</label>
+  <input type="text" name="name" required value="<%= @plant['name'] %>">
+  <label for="">Image:</label>
+  <input type="url" name="image" value="<%= @plant['image'] %>">
+
+  <button>Update plant</button>
+</form>

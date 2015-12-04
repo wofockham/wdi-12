@@ -107,9 +107,16 @@ get '/plants/:id' do
   erb :plants_show
 end
 
+get '/plants/:id/delete' do
+  plant = Plant.find params[:id]
+  plant.destroy
+  redirect to('/plants')
+end
 
-
-
+get '/plants/:id/edit' do
+  @plant = Plant.find params[:id]
+  erb :plants_edit
+end
 
 
 
