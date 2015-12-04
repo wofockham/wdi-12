@@ -1,0 +1,5 @@
+<h2><%= @plant['name'] %></h2>
+
+<% unless @plant['image'].nil? %>
+  <img src="<%= @plant['image'] %>" class="feature">
+<% end %>
