@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 require 'active_record'
+require 'pry'
 
 ActiveRecord::Base.logger = Logger.new(STDERR)
 
@@ -11,13 +12,19 @@ ActiveRecord::Base.establish_connection(
 )
 
 class Butterfly < ActiveRecord::Base
+  belongs_to :plant
 end
 
 class Plant < ActiveRecord::Base
+  has_many :butterflies
 end
 
 after do
   ActiveRecord::Base.connection.close
+end
+
+get '/pry' do
+  binding.pry
 end
 
 get '/' do
@@ -39,6 +46,7 @@ post '/butterflies' do
   butterfly.name = params[:name]
   butterfly.family = params[:family]
   butterfly.image = params[:image]
+  butterfly.plant_id = params[:plant_id]
 
   butterfly.save
 
@@ -117,6 +125,20 @@ get '/plants/:id/edit' do
   @plant = Plant.find params[:id]
   erb :plants_edit
 end
+
+post '/plants/:id' do
+  plant = Plant.find params[:id]
+  plant.name = params[:name]
+  plant.image = params[:image]
+
+  plant.save
+
+  redirect to("/plants/#{ params[:id] }")
+end
+
+
+
+
 
 
 
