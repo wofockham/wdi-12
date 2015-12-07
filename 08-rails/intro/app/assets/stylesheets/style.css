@@ -1,0 +1,12 @@
+body {
+  background-color: #ccc;
+}
+
+body.pages {
+  background-color: pink;
+}
+
+img {
+  border-radius: 100%;
+  box-shadow: 0 0 1em black;
+}
