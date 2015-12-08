@@ -1,0 +1,13 @@
+<h2><%= @planet.name %></h2>
+
+<% unless @planet.image.nil? %>
+  <%= image_tag(@planet.image) %>
+<% end %>
+
+<p>Orbit: <%= @planet.orbit %></p>
+<p>Moons: <%= @planet.moons %></p>
+
+<p>
+  <%= link_to('Edit planet', "/planets/#{ @planet.id }/edit") %>
+  <%= button_to('Destroy planet', "/planets/#{ @planet.id }", :method => :delete) %>
+</p>
