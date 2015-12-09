@@ -1,5 +1,11 @@
 <h1><%= @work.title %></h1>
 <%= image_tag(@work.image, :class => 'feature') %>
+<p>Artist: <%= link_to(@work.artist.name, @work.artist) unless @work.artist.nil? %></p>
 <p>Year: <%= @work.year %></p>
 <p>Medium: <%= @work.medium %></p>
 <p>Style: <%= @work.style %></p>
+
+<div class="controls">
+  <%= link_to 'Edit work', edit_work_path(@work) %>
+  <%= link_to 'Delete work', @work, :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+</div>
