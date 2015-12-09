@@ -1,0 +1,13 @@
+img.thumb {
+  max-width: 6em;
+}
+
+img.feature {
+  max-width: 100%;
+}
+
+label {
+  min-width: 82px;
+  display: inline-block;
+  text-align: right;
+}
