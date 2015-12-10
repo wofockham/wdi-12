@@ -1,0 +1,3 @@
+%h2= "User count: #{ @users.count }"
+- @users.each do |user|
+  %p= "#{ user.id } #{ user.name }: #{ user.email }. ADMIN: #{ user.admin }"
