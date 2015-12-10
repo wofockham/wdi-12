@@ -1,0 +1,26 @@
+%h1#goldfish.hotdog.lollies This is now in HAML
+%p Find this file in app/views/pages/demo.haml
+
+%ul
+  %li Groucho
+  %li Harpo
+  %li Chico
+
+%h2= "Here is a random number for you #{ Random.rand(1..100) }"
+
+- [1, 2, 4, 8, 16, 17].each do |n|
+  %p= n
+
+%div#content
+  %div.left.column
+    %h2 Welcome!
+    %p Something about gypsies
+  %div.right.column
+    %p= "Some piece of text backwards".reverse
+
+#content
+  %p
+  %p
+  %p
+  %p
+  %p
