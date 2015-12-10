@@ -20,9 +20,9 @@ r2 = Artist.create :name => 'Fennesz'
 r3 = Artist.create :name => 'June of 44'
 
 User.destroy_all
-u1 = User.create :name => 'Craigsy', :email => 'craigsy@gmail.com'
-u2 = User.create :name => 'Jonesy', :email => 'jonesy@gmail.com'
-u3 = User.create :name => 'Linda', :email => 'linda@gmail.com'
+u1 = User.create :name => 'Craigsy', :email => 'craigsy@gmail.com', :password => 'chicken', :password_confirmation => 'chicken'
+u2 = User.create :name => 'Jonesy', :email => 'jonesy@gmail.com', :password => 'chicken', :password_confirmation => 'chicken'
+u3 = User.create :name => 'Linda', :email => 'linda@gmail.com', :password => 'chicken', :password_confirmation => 'chicken'
 
 Mixtape.destroy_all
 m1 = Mixtape.create :name => 'Code Jams'
