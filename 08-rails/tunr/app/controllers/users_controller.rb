@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_if_admin, :only => [:index]
+  before_action :check_if_logged_in, :only => [:edit, :update]
 
   def index
     @users = User.all.order(:created_at).reverse
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find params[:id]
+    @user = @current_user
   end
 
   def update
@@ -36,5 +37,9 @@ class UsersController < ApplicationController
 
   def check_if_admin
     redirect_to root_path unless @current_user.present? && @current_user.admin?
+  end
+
+  def check_if_logged_in
+    redirect_to root_path unless @current_user.present?
   end
 end
