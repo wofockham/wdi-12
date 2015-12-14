@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root :to => 'pages#demo'
   get '/hamldemo' => 'pages#demo'
+  get '/bootstrapdemo' => 'pages#bootstrap'
 
   get '/users/edit' => 'users#edit'
   resources :users, :except => [:edit]
