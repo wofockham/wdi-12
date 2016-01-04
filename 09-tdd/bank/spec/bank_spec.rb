@@ -33,7 +33,9 @@ describe Bank do
     end
 
     it "ignores deposits of negative amounts" do
-
+      bank.create_account('Bob', 1)
+      bank.deposit('Bob', -1_000_000)
+      expect(bank.balance('Bob')).to eq 1
     end
   end
 

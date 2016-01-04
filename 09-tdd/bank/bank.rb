@@ -11,7 +11,7 @@ class Bank
   end
 
   def deposit(name, amount)
-    @accounts[name] += amount
+    @accounts[name] += amount if amount > 0
   end
 
   def withdraw(name, amount)
