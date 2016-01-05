@@ -6,20 +6,16 @@ $(document).ready(function () {
 
     var query = $('#search').val();
 
-    var request = new XMLHttpRequest();
-    var url = 'http://omdbapi.com/?t=' + query;
-    request.open('GET', url);
-
-    request.onreadystatechange = function () {
-      if (request.readyState !== 4) { return; }
-      var info = JSON.parse( request.responseText );
-
+    $.ajax('http://omdbapi.com/', {
+      data: {
+        t: query
+      }
+    }).done(function (info) {
       var $img = $('<img />');
       $img.attr('src', info['Poster']);
       $img.prependTo('#results');
-    };
+    });
 
-    request.send();
   }
 
   $('form').on('submit', search);

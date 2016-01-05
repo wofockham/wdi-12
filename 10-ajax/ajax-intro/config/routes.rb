@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   get '/time' => 'pages#time'
   get '/random' => 'pages#random'
+
+  get '/info' => 'pages#info'
 end
 
