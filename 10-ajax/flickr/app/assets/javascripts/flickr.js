@@ -1,12 +1,7 @@
-var requestInProgress = false;
 var currentPage = 1;
 var reachedEnd = false;
 
 var searchFlickr = function (query) {
-
-  if (requestInProgress === true || reachedEnd === true) { return; }
-
-  requestInProgress = true;
 
   var flickrUrl = 'https://api.flickr.com/services/rest/?jsoncallback=?';
 
@@ -19,14 +14,15 @@ var searchFlickr = function (query) {
   }).done(function (info) {
     console.log(info);
     displayPhotos(info.photos.photo); // The actual photos are buried deep in the object.
-    if (info.photos.page === info.photos.pages) {
+    if (info.photos.page >= info.photos.pages) {
       reachedEnd = true;
     }
     currentPage++;
-    requestInProgress = false;
   });
 
 };
+
+var debouncedSearchFlickr = _.debounce(searchFlickr, 4000, true);
 
 var generateURL = function (photo) {
   return [
@@ -73,7 +69,7 @@ $(document).ready(function () {
     if (scrollBottom > 400) { return; } // Fine tune this amount.
 
     var query = $('#query').val();
-    searchFlickr( query ); // This line will fire way too many times.
+    debouncedSearchFlickr( query ); // This line will fire way too many times.
 
   });
 
