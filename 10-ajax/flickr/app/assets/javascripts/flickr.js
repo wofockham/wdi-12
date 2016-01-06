@@ -54,7 +54,7 @@ $(document).ready(function () {
     if (scrollBottom > 400) { return; } // Fine tune this amount.
 
     var query = $('#query').val();
-    searchFlickr( query );
+    //searchFlickr( query ); // This line will fire way too many times.
 
   });
 
