@@ -1,32 +1,35 @@
-var User = Backbone.Model.extend({
+var Post = Backbone.Model.extend({
+  defaults: {
+    author: "Terry"
+  },
+
   initialize: function () {
-    $("#messages").prepend( "<p>New user created</p>" );
+    console.log( "New post created" );
 
-    this.on("change", function (user) {
-      $("#messages").prepend("<p>Something changed on a user</p>");
-    });
-
-    this.on("change:name", function () {
-      $("#messages").prepend("<p>The name changed on a user</p>");
+    this.on("change:author", function () {
+      console.log( "A posts author was changed" );
     });
   }
 });
 
-var userOne = new User({ name: "Rob" });
-var userTwo = new User({ name: "Wataru" });
-var userThree = new User({ name: "Sylvain" });
+var postOne = new Post({
+  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur porro id magni quos eaque rerum blanditiis, placeat praesentium, error aut sequi quidem. Dolorem laudantium asperiores, aspernatur non sunt corrupti."
+});
 
-var Users = Backbone.Collection.extend({
-  model: User,
+var Posts = Backbone.Collection.extend({
+  model: Post,
 
   initialize: function () {
-    console.log( "Users collection begun" );
+    console.log( "New blog started" );
+    this.on("add", function () {
+      console.log( "Post was added to the blog" );
+    });
   }
 });
 
-var users = new Users();
-users.add([ userOne, userTwo, userThree ]);
+var blog = new Posts( postOne );
 
-users.add({
-  name: "Colin"
+blog.add({
+  author: "Zero",
+  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis repellat, voluptatem, maxime perferendis voluptas laudantium excepturi tenetur debitis deleniti dolorem sapiente cumque, impedit molestias suscipit, eaque maiores odit nesciunt eos."
 });
