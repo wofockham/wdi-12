@@ -1,5 +1,7 @@
+var app = {};
+
 // Post Model, very similar concept to models in Rails.
-var Post = Backbone.Model.extend({
+app.Post = Backbone.Model.extend({
   // Defaults serve as documentation for the attributes of a typical post.
   defaults: {
     author: "Terry",
@@ -15,8 +17,8 @@ var Post = Backbone.Model.extend({
 });
 
 // Kind of like Backbone's alternative to ActiveRecord
-var Posts = Backbone.Collection.extend({
-  model: Post,
+app.Posts = Backbone.Collection.extend({
+  model: app.Post,
 
   initialize: function () {
     this.on("add", function () {
@@ -26,21 +28,21 @@ var Posts = Backbone.Collection.extend({
 });
 
 // Seed data
-var postOne = new Post({
+var postOne = new app.Post({
   id: 1,
   title: "First post",
   content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur porro id magni quos eaque rerum blanditiis, placeat praesentium, error aut sequi quidem. Dolorem laudantium asperiores, aspernatur non sunt corrupti."
 });
 
-var postTwo = new Post({
+var postTwo = new app.Post({
   id: 2,
   title: "Startups post",
   content: "Something about startups"
 });
 
-var blog = new Posts( [postOne, postTwo] );
+app.blog = new app.Posts( [postOne, postTwo] );
 
-blog.add({
+app.blog.add({
   id: 3,
   author: "Zero",
   title: "Game theory",
@@ -48,7 +50,7 @@ blog.add({
 });
 
 // Kinda like a combination of Rails views and controllers PLUS event handling.
-var AppView = Backbone.View.extend({
+app.AppView = Backbone.View.extend({
   el: '#main',
   render: function () {
     // Set up the overall page structure
@@ -57,19 +59,19 @@ var AppView = Backbone.View.extend({
 
     // Create individual views within the app for each of the blog posts.
     this.collection.each(function (post) {
-      var postListView = new PostListView({model: post});
+      var postListView = new app.PostListView({model: post});
       postListView.render();
     });
   }
 });
 
-var PostListView = Backbone.View.extend({
+app.PostListView = Backbone.View.extend({
   tagName: 'li', // Create a new element for each instance of this view.
   events: {
     'click': 'showPost'
   },
   showPost: function () {
-    router.navigate('posts/' + this.model.get('id'), true);
+    app.router.navigate('posts/' + this.model.get('id'), true);
   },
   render: function () {
     this.$el.text( this.model.get('title') );
@@ -77,7 +79,7 @@ var PostListView = Backbone.View.extend({
   }
 });
 
-var PostView = Backbone.View.extend({
+app.PostView = Backbone.View.extend({
   el: '#main',
   render: function () {
     var postViewTemplater = _.template( $('#postView').html() );
@@ -86,25 +88,25 @@ var PostView = Backbone.View.extend({
 });
 
 // Connects SPA hash URL to a bit of code.
-var AppRouter = Backbone.Router.extend({
+app.AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
     'posts/:id': 'viewPost'
   },
 
   index: function () {
-    var appView = new AppView({collection: blog});
+    var appView = new app.AppView({collection: app.blog});
     appView.render();
   },
 
   viewPost: function (id) {
-    var post = blog.get(id);
-    var postView = new PostView({model: post});
+    var post = app.blog.get(id);
+    var postView = new app.PostView({model: post});
     postView.render();
   }
 });
 
-var router = new AppRouter(); // "Global" variable so we can use it in other places.
+app.router = new app.AppRouter(); // "Global" variable so we can use it in other places.
 $(document).ready(function () {
   Backbone.history.start(); // Entry point of the application: first code that actually runs.
 });
