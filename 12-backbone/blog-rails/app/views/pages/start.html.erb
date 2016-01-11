@@ -1,4 +1,17 @@
-<h1>Pages#start</h1>
-<p>Find me in app/views/pages/start.html.erb</p>
+<nav>
+  <a href="/">Home</a>
+</nav>
 
 <div id="main"></div>
+
+<script id="appView" type="text/template">
+  <h1>My Blog With All My Feelings</h1>
+  <h2>Recent Posts</h2>
+  <ul id="posts"></ul>
+</script>
+
+<script id="postView" type="text/template">
+  <h1>{{ title }}</h1>
+  <h2>{{ author }}</h2>
+  <p>{{ content }}</p>
+</script>
