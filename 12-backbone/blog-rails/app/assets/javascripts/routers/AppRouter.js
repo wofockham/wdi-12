@@ -4,7 +4,8 @@ var app = app || {};
 app.AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
-    'posts/:id': 'viewPost'
+    'posts/:id': 'viewPost',
+    ':default': 'sendToHome' // this matches any other URLs and functions as a 404 redirect
   },
 
   index: function () {
@@ -14,7 +15,16 @@ app.AppRouter = Backbone.Router.extend({
 
   viewPost: function (id) {
     var post = app.blog.get(id);
+    // Redirect back to the homepage if the request post doesn't exist:
+    if (! post) {
+      app.router.navigate('', true);
+      return;
+    }
     var postView = new app.PostView({model: post});
     postView.render();
+  },
+
+  sendToHome: function () {
+    app.router.navigate('', true);
   }
 });
