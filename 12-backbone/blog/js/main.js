@@ -1,70 +1,77 @@
-var Post = Backbone.Model.extend({
+var app = {};
+
+// Post Model, very similar concept to models in Rails.
+app.Post = Backbone.Model.extend({
+  // Defaults serve as documentation for the attributes of a typical post.
   defaults: {
     author: "Terry",
     title: "Untitled"
   },
 
+  // Set up any behaviour in here.
   initialize: function () {
-    console.log( "New post created" );
-
-    this.on("change:author", function () {
-      console.log( "A posts author was changed" );
-    });
+    // this.on("change:author", function () {
+    //   console.log( "A posts author was changed" );
+    // });
   }
 });
 
-var Posts = Backbone.Collection.extend({
-  model: Post,
+// Kind of like Backbone's alternative to ActiveRecord
+app.Posts = Backbone.Collection.extend({
+  model: app.Post,
 
   initialize: function () {
-    console.log( "New blog started" );
     this.on("add", function () {
       console.log( "Post was added to the blog" );
     });
   }
 });
 
-var postOne = new Post({
+// Seed data
+var postOne = new app.Post({
   id: 1,
   title: "First post",
   content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur porro id magni quos eaque rerum blanditiis, placeat praesentium, error aut sequi quidem. Dolorem laudantium asperiores, aspernatur non sunt corrupti."
 });
 
-var postTwo = new Post({
+var postTwo = new app.Post({
   id: 2,
   title: "Startups post",
   content: "Something about startups"
 });
 
-var blog = new Posts( [postOne, postTwo] );
+app.blog = new app.Posts( [postOne, postTwo] );
 
-blog.add({
+app.blog.add({
   id: 3,
   author: "Zero",
   title: "Game theory",
   content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis repellat, voluptatem, maxime perferendis voluptas laudantium excepturi tenetur debitis deleniti dolorem sapiente cumque, impedit molestias suscipit, eaque maiores odit nesciunt eos."
 });
 
-var AppView = Backbone.View.extend({
+// Kinda like a combination of Rails views and controllers PLUS event handling.
+app.AppView = Backbone.View.extend({
   el: '#main',
   render: function () {
+    // Set up the overall page structure
     var appViewHTML = $('#appView').html();
     this.$el.html( appViewHTML );
 
+    // Create individual views within the app for each of the blog posts.
     this.collection.each(function (post) {
-      var postListView = new PostListView({model: post});
+      var postListView = new app.PostListView({model: post});
       postListView.render();
     });
   }
 });
 
-var PostListView = Backbone.View.extend({
-  tagName: 'li',
+app.PostListView = Backbone.View.extend({
+  tagName: 'li', // Create a new element for each instance of this view.
   events: {
     'click': 'showPost'
   },
   showPost: function () {
-    router.navigate('posts/' + this.model.get('id'), true);
+    app.router.navigate('posts/' + this.model.get('id'), true);
   },
   render: function () {
     this.$el.text( this.model.get('title') );
@@ -72,7 +79,7 @@ var PostListView = Backbone.View.extend({
   }
 });
 
-var PostView = Backbone.View.extend({
+app.PostView = Backbone.View.extend({
   el: '#main',
   render: function () {
     var postViewTemplater = _.template( $('#postView').html() );
@@ -80,27 +87,28 @@ var PostView = Backbone.View.extend({
   }
 });
 
-var AppRouter = Backbone.Router.extend({
+// Connects SPA hash URL to a bit of code.
+app.AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
     'posts/:id': 'viewPost'
   },
 
   index: function () {
-    var appView = new AppView({collection: blog});
+    var appView = new app.AppView({collection: app.blog});
     appView.render();
   },
 
   viewPost: function (id) {
-    var post = blog.get(id);
-    var postView = new PostView({model: post});
+    var post = app.blog.get(id);
+    var postView = new app.PostView({model: post});
     postView.render();
   }
 });
 
-var router = new AppRouter();
+app.router = new app.AppRouter(); // "Global" variable so we can use it in other places.
 $(document).ready(function () {
-  Backbone.history.start();
+  Backbone.history.start(); // Entry point of the application: first code that actually runs.
 });
 
 
