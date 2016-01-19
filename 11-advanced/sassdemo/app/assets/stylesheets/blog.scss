@@ -1,0 +1,71 @@
+// Place all the styles related to the Blog controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$brand-color: green;
+$centered: 0 auto;
+$post-width: 800px;
+
+@mixin centered {
+  margin: 0 auto;
+}
+
+@mixin fancy-image {
+  border: 2px solid white;
+  border-radius: 100%;
+}
+
+.message {
+  width: 50%;
+  @include centered;
+  border-radius: 1em;
+  padding: 1em;
+}
+
+.notification {
+  @extend .message;
+  border: 1px solid blue;
+  color: blue;
+}
+
+.error {
+  @extend .message;
+  border: 1px solid red;
+  color: red;
+}
+
+.success {
+  @extend .message;
+  border: 1px solid green;
+  color: green;
+}
+
+
+h1 {
+  color: $brand-color;
+  text-align: center;
+}
+
+.post {
+  @include centered;
+  max-width: $post-width;
+  border: 1px solid grey;
+  border-radius: 1em;
+  padding: 1em;
+  margin-bottom: 1em;
+
+  .author {
+    max-width: $post-width / 2;
+    background-color: #ccc;
+    padding: 1em;
+    text-align: right;
+    color: $brand-color;
+    font-style: italic;
+  }
+
+  .content p {
+    letter-spacing: 1px;
+    line-height: 1.2em;
+    margin-top: 2em;
+  }
+}
