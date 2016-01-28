@@ -7,6 +7,7 @@
 #  updated_at :datetime         not null
 #  name       :string
 #  type       :string
+#  shelf_id   :integer
 #
 
 class Pear < Fruit
