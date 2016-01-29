@@ -21,4 +21,10 @@ $(document).ready(function () {
     $('#selected').css('background-color', selectedColor);
   });
 
+  $('#canvas').on('mouseenter', '.pixel', function (e) {
+    if (e.shiftKey === false) { return; } // Don't paint this pixel
+    var selectedColor = $('#selected').css('background-color');
+    $(this).css('background-color', selectedColor);
+  });
+
 });
