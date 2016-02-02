@@ -33,6 +33,43 @@ app.init = function () {
   app.axes = new THREE.AxisHelper( 40 );
   app.scene.add(app.axes);
 
+  var planeGeometry = new THREE.PlaneGeometry(60, 20); // width, height
+  var planeMaterial = new THREE.MeshLambertMaterial({
+    color: 0xCFD8DC // a hexadecimal color
+  });
+  app.plane = new THREE.Mesh(planeGeometry, planeMaterial); // The thing that brings the material and the shape together
+  app.plane.rotation.x = -0.5 * Math.PI;
+  app.plane.position.x = 15;
+  app.plane.position.y = 0;
+  app.plane.position.z = 0;
+  app.scene.add(app.plane);
+
+  var cubeGeometry = new THREE.BoxGeometry(4, 4, 4); //width, height, breadth
+  var cubeMaterial = new THREE.MeshLambertMaterial({
+    color: 0xFF8F00,
+    // wireframe: true
+  }); // Set the properties
+  app.cube = new THREE.Mesh(cubeGeometry, cubeMaterial); // Joined the shape and the material
+  app.cube.position.x = -4;
+  app.cube.position.y = 3;
+  app.cube.position.z = 0;
+  app.scene.add(app.cube); // Add it to the scene
+
+  var sphereGeometry = new THREE.SphereGeometry(4, 30, 30);
+  var sphereMaterial = new THREE.MeshLambertMaterial({
+    color: 0x039BE5,
+    // wireframe: true
+  });
+  app.sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+  app.sphere.position.x = 20;
+  app.sphere.position.y = 4;
+  app.sphere.position.z = 2;
+  app.scene.add(app.sphere);
+
+  app.spotLight = new THREE.SpotLight(0xFFFFFF);
+  app.spotLight.position.set(-40, 60, 10); // x, y, z
+  app.scene.add(app.spotLight);
+
   // Put the element that the renderer created for us on to the page
   document.getElementById("output").appendChild(app.renderer.domElement);
   // Finally render everything
