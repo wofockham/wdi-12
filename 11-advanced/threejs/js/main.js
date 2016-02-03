@@ -13,6 +13,9 @@ app.animate = function () {
   app.sphere.position.x = 20 + ( 10 * ( Math.cos(app.step) ) );
   app.sphere.position.y = 2 + (10 * (Math.abs( Math.sin(app.step) )));
 
+  // app.sphere.position.x = 2 + (20*(Math.sin(app.step)));
+  // app.sphere.position.z = 2 + (20*(Math.cos(app.step)));
+
   app.cube.rotation.x += app.controller.rotationSpeed;
   app.cube.rotation.y += app.controller.rotationSpeed;
   app.cube.rotation.z += app.controller.rotationSpeed;
