@@ -1,4 +1,7 @@
 class SinglyLinkedList
+
+  include Enumerable # Mixin
+
   class Node
     attr_accessor :value, :next
     def initialize(value=nil)
@@ -13,9 +16,7 @@ class SinglyLinkedList
     @head = Node.new(start_value) unless start_value.nil?
   end
 
-  def first
-    @head
-  end
+  alias first head
 
   def last
     last_node = @head
@@ -37,36 +38,58 @@ class SinglyLinkedList
   end
 
   def prepend(value)
-    # Your code here
+    node = Node.new(value)
+    node.next = @head
+    @head = node
   end
 
   def length # Also #count and #size (Ruby has a nice way to alias things)
-    # Your code here
+    tally = 0
+    node = @head
+    while node.respond_to? :next
+      node = node.next
+      tally += 1
+    end
+    tally
   end
 
   def find(needle)
     # Returns the node containing the needle as its value
+    node = @head
+    until node.nil?
+      return node if node.value == needle
+      node = node.next
+    end
+    nil
   end
 
   def reverse
-    # Returns a new SLL with the nodes in reverse order
+    reverse_list = SinglyLinkedList.new
+    node = @head
+    while node
+      reverse_list.prepend node.value
+      node = node.next
+    end
+    reverse_list
   end
 
   def reverse!
-    # Your code here
+    @head = reverse.head
+    self
   end
 
   def each
-    # Your tricky code goes here (psst "yield")
+    node = @head
+    while node
+      yield node.value if block_given?
+      node = node.next
+    end
   end
 
-  def map
-    # This is trivial once #each is working
-  end
 end
 
-# require 'pry'
-# binding.pry
+require 'pry'
+binding.pry
 
 # bros = SinglyLinkedList.new 'Chico'
 # bros.append('Groucho')
